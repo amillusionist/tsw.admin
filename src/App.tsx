@@ -21,7 +21,7 @@ export const App = () => (
       layout={DashboardLayout} 
       authProvider={stableAuthProvider}
       loginPage={LoginPage}
-      requireAuth={false}
+      requireAuth={true}
     >
     <Resource
       name="dashboard"

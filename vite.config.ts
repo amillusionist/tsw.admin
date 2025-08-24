@@ -5,8 +5,9 @@ import path from "path";
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
   plugins: [react()],
+  // 
   server: {
-    host: true,
+    allowedHosts: true,
   },
   build: {
     sourcemap: mode === "development",
