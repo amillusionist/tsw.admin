@@ -4,24 +4,24 @@ import {
   ListGuesser,
   EditGuesser,
   ShowGuesser,
-  
 } from "react-admin";
 import { BrowserRouter } from "react-router-dom";
 import { authProvider } from "./providers/authProvider";
 import { LoginPage } from "@/pages/LoginPage";
 import DashboardLayout from "./dashboard/page";
-import { dataProvider } from "./providers/dataProvider";
+
 
 // Create a stable reference to prevent infinite re-renders
 const stableAuthProvider = authProvider;
 
 export const App = () => (
+  
   <BrowserRouter>
     <Admin 
       layout={DashboardLayout} 
       authProvider={stableAuthProvider}
       loginPage={LoginPage}
-      dataProvider={dataProvider}
+      requireAuth={false}
     >
     <Resource
       name="dashboard"

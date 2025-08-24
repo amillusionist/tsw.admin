@@ -5,7 +5,7 @@ import { SiteHeader } from "@/components/shadcn/ui/site-header";
 
 export const Layout: React.FC<LayoutProps> = (props) => {
   return (
-    <DashboardLayout >
+    <DashboardLayout>
       <RaLayout {...props} appBar={SiteHeader} />
     </DashboardLayout>
   );

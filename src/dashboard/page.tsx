@@ -20,9 +20,8 @@ import UpdateServicePage from "./services/updateService"
 import UsersPage from "./users/page"
 import AddUserPage from "./users/addUser"
 import UpdateUserPage from "./users/updateUser"
+
 import data from "./data.json"
-import { useCheckAuth } from "react-admin"
-import { useEffect } from "react"
 
 // Main Dashboard Content Component
 function DashboardContent() {
@@ -68,13 +67,6 @@ function ContentRouter() {
 }
 
 export default function Page() {
-  const checkAuth = useCheckAuth();
-  useEffect(() => {
-    checkAuth({}, false).catch(() => {
-      location.href = "/login";
-    });
-  }, [checkAuth]);
-  console.log("checkAuth", checkAuth);
   return (
     <SidebarProvider
       style={
@@ -84,11 +76,9 @@ export default function Page() {
         } as React.CSSProperties
       }
     >
-      
       <AppSidebar />
       <SidebarInset>
         <SiteHeader />
-        
         <div className="flex flex-1 flex-col w-[1120px] mx-auto">
           <div className="@container/main flex flex-1 flex-col gap-2">
             <ContentRouter />

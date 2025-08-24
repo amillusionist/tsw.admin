@@ -63,6 +63,7 @@ const authProvider: AuthProvider = {
       return Promise.reject();
     }
   },
+  
 
   checkError: async (error) => {
     const status = error.status;
