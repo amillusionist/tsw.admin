@@ -20,7 +20,7 @@ import UpdateServicePage from "./services/updateService"
 import UsersPage from "./users/page"
 import AddUserPage from "./users/addUser"
 import UpdateUserPage from "./users/updateUser"
-
+import { LoginPage } from "./login/page"
 import data from "./data.json"
 
 // Main Dashboard Content Component
@@ -60,6 +60,7 @@ function ContentRouter() {
       <Route path="/users" element={<UsersPage />} />
       <Route path="/add-user" element={<AddUserPage />} />
       <Route path="/update-user/:id" element={<UpdateUserPage />} />
+      <Route path="/login" element={<LoginPage />} />
       {/* Add more routes here as needed */}
       <Route path="*" element={<DashboardContent />} />
     </Routes>
