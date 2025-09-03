@@ -21,6 +21,11 @@ import UsersPage from "./users/page"
 import AddUserPage from "./users/addUser"
 import UpdateUserPage from "./users/updateUser"
 import { LoginPage } from "./login/page"
+import NotificationsPage from "./notifications/page"
+import SettingsPage from "./settings/page"
+import MarketingPage from "./marketing/page"
+import BookingsPage from "./bookings/page"
+import ReportsPage from "./reports/page"
 import data from "./data.json"
 
 // Main Dashboard Content Component
@@ -60,6 +65,11 @@ function ContentRouter() {
       <Route path="/users" element={<UsersPage />} />
       <Route path="/add-user" element={<AddUserPage />} />
       <Route path="/update-user/:id" element={<UpdateUserPage />} />
+              <Route path="/notifications" element={<NotificationsPage />} />
+        <Route path="/settings" element={<SettingsPage />} />
+        <Route path="/marketing" element={<MarketingPage />} />
+        <Route path="/bookings" element={<BookingsPage />} />
+        <Route path="/reports" element={<ReportsPage />} />
       <Route path="/login" element={<LoginPage />} />
       {/* Add more routes here as needed */}
       <Route path="*" element={<DashboardContent />} />

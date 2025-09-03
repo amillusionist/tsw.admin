@@ -154,7 +154,7 @@ export default function CategoriesPage() {
       return (
         <div className="w-6 h-6 flex items-center justify-center bg-gray-50 rounded border">
           <img 
-            src={category.image} 
+            src={import.meta.env.VITE_PUBLIC_UPLOAD_API_URL + category.image} 
             alt={category.name}
             className="w-5 h-5 object-contain"
             onError={(e) => {

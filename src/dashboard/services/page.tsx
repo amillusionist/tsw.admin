@@ -64,12 +64,6 @@ interface Service {
     availableDays: string[]
     maxBookingsPerDay: number
   }
-  provider?: {
-    providerId: string
-    providerName: string
-    providerRating: number
-    providerExperience: number
-  }
   tags?: string[]
   seo?: {
     metaTitle: string

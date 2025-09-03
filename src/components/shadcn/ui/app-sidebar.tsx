@@ -18,7 +18,8 @@ import {
   ChevronRight,
   Bell,
   UserCheck,
-  Shield
+  Shield,
+  Target
 } from "lucide-react"
 
 interface SidebarItem {
@@ -76,6 +77,11 @@ const sidebarGroups: SidebarGroup[] = [
         title: "Notifications",
         url: "/notifications",
         icon: Bell,
+      },
+      {
+        title: "Marketing",
+        url: "/marketing",
+        icon: Target,
       },
     ],
   },

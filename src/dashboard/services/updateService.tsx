@@ -39,12 +39,6 @@ interface Service {
     availableDays: string[]
     maxBookingsPerDay: number
   }
-  provider?: {
-    providerId: string
-    providerName: string
-    providerRating: number
-    providerExperience: number
-  }
   tags?: string[]
   seo?: {
     metaTitle: string
@@ -111,7 +105,7 @@ export default function UpdateServicePage() {
       <div className="max-w-4xl">
         <ServiceForm
           editMode={true}
-          initialData={service}
+          initialData={service as any}
           onSuccess={handleSuccess}
           onCancel={handleCancel}
         />

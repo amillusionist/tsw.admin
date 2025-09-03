@@ -11,9 +11,11 @@ import {
 import { SidebarTriggerButton } from "@/components/shadcn/ui/app-sidebar"
 import { RefreshCw, User, Moon, Sun, Bell, Mail } from "lucide-react"
 import { useTheme } from "@/components/theme-provider"
+import { useAuthProvider } from "react-admin"
 
 export function SiteHeader() {
   const { theme, setTheme } = useTheme()
+  const authProvider = useAuthProvider()
 
   return (
     <header className="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12">
@@ -82,7 +84,7 @@ export function SiteHeader() {
                 Settings
               </DropdownMenuItem>
               <DropdownMenuSeparator />
-              <DropdownMenuItem>
+              <DropdownMenuItem onClick={() => authProvider?.logout(null)}>
                 Log out
               </DropdownMenuItem>
             </DropdownMenuContent>

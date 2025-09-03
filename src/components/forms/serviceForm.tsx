@@ -38,12 +38,6 @@ interface ServiceFormData {
     availableTimeSlots: string[]
     maxBookingsPerDay: number
   }
-  provider: {
-    providerId: string
-    providerName: string
-    providerRating: number
-    providerExperience: number
-  }
   tags: string[]
   seo: {
     metaTitle: string
@@ -97,12 +91,7 @@ export function ServiceForm({ onSuccess, onCancel, editMode = false, initialData
       availableTimeSlots: [],
       maxBookingsPerDay: 10
     },
-    provider: initialData?.provider || {
-      providerId: "",
-      providerName: "",
-      providerRating: 0,
-      providerExperience: 0
-    },
+
     tags: initialData?.tags || [],
     seo: initialData?.seo || {
       metaTitle: "",
@@ -229,8 +218,12 @@ export function ServiceForm({ onSuccess, onCancel, editMode = false, initialData
       const data = await response.json()
 
       if (data.success) {
-        setFormData(prev => ({ ...prev, featuredImage: data.data.url }))
-      } else {
+        // Convert absolute URL → relative path
+        const uploadedUrl = new URL(data.data.url)    // make URL object
+        const relativePath = uploadedUrl.pathname     // gives "/uploads/xyz.jpg"
+      
+        setFormData(prev => ({ ...prev, featuredImage: relativePath }))
+      }else {
         throw new Error(data.message || "Failed to upload image")
       }
     } catch (error) {
@@ -673,7 +666,7 @@ export function ServiceForm({ onSuccess, onCancel, editMode = false, initialData
               <div className="flex items-center gap-3 p-3 border rounded-lg">
                 <div className="w-16 h-16 flex items-center justify-center bg-gray-50 rounded border overflow-hidden">
                   <img 
-                    src={formData.featuredImage} 
+                    src={import.meta.env.VITE_PUBLIC_UPLOAD_API_URL + formData.featuredImage} 
                     alt="Uploaded image" 
                     className="w-full h-full object-cover"
                     onError={(e) => {
@@ -683,7 +676,7 @@ export function ServiceForm({ onSuccess, onCancel, editMode = false, initialData
                 </div>
                 <div className="flex-1">
                   <p className="text-xs text-muted-foreground truncate">
-                    {formData.featuredImage.split('/').pop() || 'Uploaded image'}
+                    {import.meta.env.VITE_PUBLIC_UPLOAD_API_URL + formData.featuredImage}
                   </p>
                 </div>
                 <Button

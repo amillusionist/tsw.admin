@@ -1,10 +1,12 @@
 import { AuthProvider } from "react-admin";
-
+import { Navigate } from "react-router-dom";
+import { getAuthHeaders } from "../config/headers";
+import { apiCall } from "../config/headers";
 // Use environment variable for API URL
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
 
 const authProvider: AuthProvider = {
-  login: async ({ username, password }) => {
+    login: async ({ username, password }) => {
     const email = username;
     try {
       const response = await fetch(`${API_URL}/auth/login`, {
@@ -30,9 +32,22 @@ const authProvider: AuthProvider = {
     }
   },
 
+  // logout: async () => {
+  //   localStorage.removeItem("auth");
+  //   return Promise.resolve();
+  // },
   logout: async () => {
-    localStorage.removeItem("auth");
-    return Promise.resolve();
+    try {
+      await apiCall("/auth/logout", { method: "POST" });
+      localStorage.removeItem("auth");
+      window.location.href = "/login";
+    } catch (e) {
+      console.error("Logout failed", e);
+    } finally {
+      // // localStorage.removeItem("auth");
+      // Navigate("/login" as any);
+      // // return Promise.resolve();
+    }
   },
 
   checkAuth: async () => {
@@ -42,6 +57,7 @@ const authProvider: AuthProvider = {
       
       if (!auth) {
         console.log("No auth data found");
+        window.location.href = "/login";
         return Promise.reject();
       }
       

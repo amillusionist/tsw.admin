@@ -9,6 +9,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Loader2, Upload, X } from "lucide-react"
 import { getAuthHeaders, getApiUrl } from "@/config/headers"
 
+
 interface CategoryFormData {
   name: string
   description: string
@@ -94,7 +95,8 @@ export function CategoryForm({ onSuccess, onCancel, editMode = false, initialDat
       const data = await response.json()
 
       if (data.success) {
-        setFormData(prev => ({ ...prev, image: data.data.url }))
+        const relativePath = data.data.url.replace(import.meta.env.VITE_PUBLIC_UPLOAD_API_URL, '')
+        setFormData(prev => ({ ...prev, image: relativePath }))
       } else {
         throw new Error(data.message || "Failed to upload icon")
       }
@@ -215,7 +217,7 @@ export function CategoryForm({ onSuccess, onCancel, editMode = false, initialDat
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
-          <div className="space-y-2">
+          {/* <div className="space-y-2">
             <Label htmlFor="icon-url">Icon URL</Label>
             <Input
               id="icon-url"
@@ -223,7 +225,7 @@ export function CategoryForm({ onSuccess, onCancel, editMode = false, initialDat
               onChange={(e) => setFormData(prev => ({ ...prev, image: e.target.value }))}
               placeholder="https://example.com/icon.webp"
             />
-          </div>
+          </div> */}
 
           <div className="space-y-2">
             <Label>Upload Icon File</Label>
@@ -265,7 +267,7 @@ export function CategoryForm({ onSuccess, onCancel, editMode = false, initialDat
               <div className="flex items-center gap-3 p-3 border rounded-lg">
                 <div className="w-8 h-8 flex items-center justify-center bg-gray-50 rounded border">
                   <img 
-                    src={formData.image} 
+                    src= {import.meta.env.VITE_PUBLIC_UPLOAD_API_URL + formData.image} 
                     alt="Uploaded icon" 
                     className="w-6 h-6 object-contain"
                     onError={(e) => {
@@ -290,7 +292,7 @@ export function CategoryForm({ onSuccess, onCancel, editMode = false, initialDat
                 </div>
                 <div className="flex-1">
                   <p className="text-xs text-muted-foreground truncate">
-                    {formData.image.split('/').pop() || 'Uploaded icon'}
+                    {import.meta.env.VITE_PUBLIC_UPLOAD_API_URL + formData.image} 
                   </p>
                 </div>
                 <Button
