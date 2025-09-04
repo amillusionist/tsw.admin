@@ -281,7 +281,7 @@ export default function ServicesPage() {
                     <div className="flex items-center gap-3">
                       <div className="w-10 h-10 rounded-lg overflow-hidden bg-gray-100">
                         <img 
-                          src={service.featuredImage} 
+                          src={import.meta.env.VITE_PUBLIC_UPLOAD_API_URL + service.featuredImage} 
                           alt={service.name}
                           className="w-full h-full object-cover"
                           onError={(e) => {

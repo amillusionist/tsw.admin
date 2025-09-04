@@ -86,7 +86,7 @@ export function CategoryForm({ onSuccess, onCancel, editMode = false, initialDat
       const uploadHeaders = { ...headers }
       delete (uploadHeaders as any)['Content-Type']
 
-      const response = await fetch(`${API_URL}/upload/icons`, {
+      const response = await fetch(`${API_URL}/upload/images`, {
         method: 'POST',
         headers: uploadHeaders,
         body: formData
